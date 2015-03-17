@@ -26,7 +26,6 @@ require_relative './parameters.rb'
 require_relative './optimize_crs.rb'
 require_relative './optimize_sa.rb'
 require_relative './optimize_local.rb'
-require_relative './optimize_dist.rb'
 
 class DataPoint
   def initialize(perm_set, vals)
