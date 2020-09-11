@@ -20,6 +20,8 @@ with Typing fatigue analyzer; if not, see <http://www.gnu.org/licenses/>.
 require_relative './parse.rb'
 require_relative './key.rb'
 require_relative './keyboard.rb'
+# 세모이 자판은 운지법이 다른 자판과 다르기 때문에
+# 원래의 keyboard.rb 파일 대신에 keyboard_semoe2018.rb를 잠시 keyboard.rb로 바꾸시고 분석하셔야 합니다.
 require_relative './keyboard_layout.rb'
 require_relative './analysis.rb'
 require_relative './jamo_analysis.rb'
@@ -37,65 +39,33 @@ end
 
 total_layouts = [
   @dubeol, 
-  @dubeol_opt2,
-  #@sebeol_3_90, 
-  @sebeol_3_91, 
-  #@sebeol_sunarae,
-  #@shinsebeol_park_2003, 
-  @shinsebeol_2012,
-  @shinsebeol_2015,
-  #@sebeol_3_91_sunarae,
-  #@sebeol_kim_38, 
-  #@sebeol_3_2011, 
-  #@sebeol_3_2012, 
-  #@sebeol_3_14, 
-  #@sebeol_sae_sunarae,
-  #@sebeol_3_2015, 
-  #@sebeol_3_2015_basic, 
-  @sebeol_3_2015_sunarae,
-]
-
-sunarae_layouts = [
-  @sebeol_sunarae,
+  @sebeol_3_14,
+  @sebeol_3_90,
+  @sebeol_3_91,
   @sebeol_3_91_sunarae,
+  @sebeol_3_2011,
+  @sebeol_3_2012,
+  @sebeol_3_2015,
+  @sebeol_3_2015_sunarae,
+  @sebeol_kim_38,
   @sebeol_sae_sunarae,
-  @sebeol_3_2015_v3_sunarae,
-  @shinsebeol_2012,
-  @shinsebeol_2015,
+  @sebeol_sunarae,
+  @shin_p2,
+  @shinsebeol_park_2003,
 ]
 
-shinsebeol_layouts = [
-  @shinsebeol_park_2003, 
-  @shinsebeol_2012,
-  @shinsebeol_2015_basic,
-  @shinsebeol_2015,
+semoe_layout = [
+  @sebeol_3_m2018,
 ]
 
-dubeol_layouts = [
-  @dubeol,
-  @dubeol_parksong,
-  @dubeol_northkorea,
-  @dubeol_united,
-  @dubeol_kim,
-  @dubeol_patal,
-  @dubeol_opt1,
-  @dubeol_opt2,
-  @dubeol_worst,
-]
-
-moachigi_layouts = [
-  @ahnmatae,
-  @moachigi_2014,
-]
 
 layouts = total_layouts
-#layouts = sunarae_layouts
-#layouts = shinsebeol_layouts
-#layouts = dubeol_layouts
-#layouts = moachigi_layouts
+# layouts = semoe_layout
+# 세모이 자판은 운지법이 다른 자판과 다르기 때문에 따로 분석해야 합니다.
+
 
 # 원하는 파일의 경로를 선택하세요.
-#file = "texts/novels.txt"
+file = "texts/novels.txt"
 
 str = File.open(file, "r:UTF-8", &:read)
 
@@ -115,18 +85,18 @@ def print_entries(analysis)
 
   return [
     ["이름", analysis.layout.name],
-    #["총 타수", analysis.count_strokes],
+    ["총 타수", analysis.count_strokes],
     ["자모 당 타수", str(analysis.count_strokes.to_f / @total_jamo)],
-    #["윗글쇠 누른 횟수", analysis.count_shift],
-    #["윗글쇠 누른 비율", percentage_str(analysis.shift_ratio)],
+    ["윗글쇠 누른 횟수", analysis.count_shift],
+    ["윗글쇠 누른 비율", percentage_str(analysis.shift_ratio)],
     ["1열\t2열\t3열\t4열", analysis.row_distribution_ratio.map { |val| percentage_str(val) }.join("\t")],
     ["왼손 소지\t왼손 약지\t왼손 중지\t왼손 검지\t오른손 검지\t오른손 중지\t오른손 약지\t오른손 소지", analysis.finger_distribution_ratio.map { |val| percentage_str(val) }.join("\t")],
     ["왼손 비율", percentage_str(analysis.hand_distribution_ratio[0])],
     ["글쇠 연타 비율", percentage_str(analysis.same_finger_digraphs_ratio)],
-    #["손가락 연타 비율", percentage_str(analysis.same_finger_ratio)],
+    ["손가락 연타 비율", percentage_str(analysis.same_finger_ratio)],
     ["손가락 연타 비율(글쇠 연타 제외)", percentage_str(analysis.same_finger_ratio - analysis.same_finger_digraphs_ratio)],
-    #["손 연타 비율", percentage_str(analysis.same_hand_ratio)],
-    #["손가락 이동 거리", analysis.mean_distance],
+    ["손 연타 비율", percentage_str(analysis.same_hand_ratio)],
+    ["손가락 이동 거리", analysis.mean_distance],
     #["radial\tangular", analysis.base_efforts.map { |val| str(val) }.join("\t")],
     ["평균 피로(손 이동)", str(be)],
     ["평균 피로(글쇠)", str(pe)],
