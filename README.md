@@ -1,6 +1,6 @@
 # 타이핑 피로도 분석기
 
-타이핑 피로도 분석기는 한글 이어치기 자판의 피로도를 계산하고 분석하기 위한 소프트웨어입니다. 사용한 모델은 링크 [\#0][model_link_0] [\#1][model_link_1] [\#2][model_link_2] [\#3][model_link_3] [\#4][model_link_4] [\#5][model_link_5] [\#6][model_link_6]을 참고하세요.
+타이핑 피로도 분석기는 한글 이어치기 자판의 피로도를 계산하고 분석하기 위한 소프트웨어입니다. 사용한 모델은 링크 \#0 \#1 [\#2][model_link_2] [\#3][model_link_3] [\#4][model_link_4] [\#5][model_link_5] [\#6][model_link_6]을 참고하세요.
 
 # 사용법
 
@@ -29,10 +29,10 @@
 
 타이핑 피로도 분석기는 GNU 일반 공중 사용 허가서(GPL)를 따릅니다. COPYING 파일을 참고하세요.
 
-[model_link_0]: http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=1
-[model_link_1]: http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=2
-[model_link_2]: http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=3
-[model_link_3]: http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=6
-[model_link_4]: http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=13
-[model_link_5]: http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=14
-[model_link_6]: http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=15
+<!-- [model_link_0]: http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=1
+[model_link_1]: http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=2 -->
+[model_link_2]: https://web.archive.org/web/20150309100853/http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=3
+[model_link_3]: https://web.archive.org/web/20150309100858/http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=6
+[model_link_4]: https://web.archive.org/web/20150309100752/http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=13
+[model_link_5]: https://web.archive.org/web/20150309100757/http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=14
+[model_link_6]: https://web.archive.org/web/20150309100802/http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=15

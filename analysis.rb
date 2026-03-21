@@ -360,7 +360,11 @@ class Analysis
       if key1 == key2 
         2
       elsif key1.finger != key2.finger
-        0
+        if key1.hand == key2.hand
+          0.04
+        else
+          0
+        end
       elsif @keyboard.radial_diff(key1, key2) < $radial_threshold
         2.5
       else
@@ -368,6 +372,15 @@ class Analysis
       end
     finger_stroke /= 6.0
     
+    if finger_stroke > 0
+      finger_factor = (key1.penalty + key2.penalty) / 2.0
+
+      if key1.finger == key2.finger
+        repeat_weight = $finger_repeat_weight[key1.finger.number]
+        finger_stroke *= (1.0 + finger_factor * 0.08 * repeat_weight)
+      end
+    end
+
     return finger_stroke
   end
 

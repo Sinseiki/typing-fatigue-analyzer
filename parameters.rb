@@ -22,31 +22,32 @@ $center_dx = 2.5 / 1.905
 $center_dy = 9.0 / 1.905
 
 # finger dependent values
-$stretch_max    = [1, 2, 2, 1.5, 1.5, 2, 2, 1]
-$finger_burdens = [2.26, 1.39, 0.53, 0.00, 0.00, 0.53, 1.39, 2.26]
+$stretch_max    = [1.0, 1.7, 1.9, 1.5, 1.5, 1.9, 1.7, 1.0]
+$finger_burdens = [3.26, 2.39, 1.53, 1.0, 1.0, 1.53, 2.39, 3.26]
+$finger_repeat_weight = [0.0, 0.0, 1.0, 1.05, 1.15, 1.25]
 
 # penalty weight parameters
-$radial_weight  = 0.2
-$curling_weight = 1.5
+$radial_weight  = 0.23
+$curling_weight = 1.55
 
-$hand_weight    = 2.0
+$hand_weight    = 2.25
 
-$angular_weight = 0.3
-$outward_weight = 1.5
+$angular_weight = 0.31
+$outward_weight = 1.55
 
-$finger_weight  = 1.0
+$finger_weight  = 0.375
 
 # parameters for base effort
-$inversion_penalty = 2.0
+$inversion_penalty = 2.15
 
 # parameters for penalty effort
 $shift_penalty = 5.0
 
 # parameters for stroke effort
-$radial_threshold = 0.75
-$monotonicity_bonus = 0.1
-$hand_stroke_weight = 2.0
-$finger_stroke_weight = 6.0
+$radial_threshold = 0.72
+$monotonicity_bonus = 0.07
+$hand_stroke_weight = 2.05
+$finger_stroke_weight = 6.1
 
 # jaso to opt
 
@@ -54,13 +55,13 @@ $cho_opt  = []
 $jung_opt = []
 $jong_opt = []
 
-# dubeol
-#$cho_opt  = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 
-             #'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ]
-#$cho_opt  = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 
-             #'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ]
-#$jung_opt = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 
-             #'ㅡ', 'ㅣ']
+# # dubeol
+# $cho_opt  = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 
+#              'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ]
+# $cho_opt  = ['ㄱ', 'ㄴ', 'ㄷ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 
+#              'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ]
+# $jung_opt = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ',
+#              'ㅡ', 'ㅣ']
 # sebeol
 #$cho_opt  = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 
              #'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ]
