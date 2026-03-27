@@ -76,7 +76,7 @@ class DataSet < Array
 end
 
 $stored_data_points = []
-$best_in_history = [[], [33.0, 33.0, 33.0, 99.0]]
+$best_in_history = [[], [33.0, 33.0, 33.0, 33.0, 99.0]]
 
 def jamo_set_to_perm(orig_hash, hash, jamos_to_opt)
   orig_hash_filtered = orig_hash.select { |key, _val| jamos_to_opt.include?(key) }
@@ -271,10 +271,11 @@ end
 def func(perm_set, initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
   $stored_data_points.each do |data_point|
     if data_point[0] == perm_set
-      puts "#{perm_set}: %.4f/%.4f/%.4f/%.4f" % [data_point[1][0],
+      puts "#{perm_set}: %.4f/%.4f/%.4f/%.4f/%.4f" % [data_point[1][0],
                                                  data_point[1][1],
                                                  data_point[1][2],
-                                                 data_point[1][3]]
+                                                 data_point[1][3],
+                                                 data_point[1][4]]
       return data_point[1] 
     end
   end
@@ -284,19 +285,19 @@ def func(perm_set, initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
   total_jamo = jamo_data.inject(0) { |sum, jamos| sum + jamos.count { |jamo| !jamo.nil? } }
 
   analysis = Analysis.new(jamo_data, @standard_keyboard, layout)
-  be, pe, se = analysis.efforts
-  fatigue = (be + pe + se) * analysis.count_strokes / total_jamo
+  be, pe, se, de = analysis.efforts
+  fatigue = (be + pe + se) * analysis.count_strokes / total_jamo + de
 
   #print perm_set
-  puts "#{perm_set}: %.4f/%.4f/%.4f/%.4f" % [be, pe, se, fatigue]
+  puts "#{perm_set}: %.4f/%.4f/%.4f/%.4f/%.4f" % [be, pe, se, de, fatigue]
 
-  $stored_data_points << [perm_set, [be, pe, se, fatigue]]
+  $stored_data_points << [perm_set, [be, pe, se, de, fatigue]]
 
   if fatigue < $best_in_history[1][-1]
-    $best_in_history = [perm_set, [be, pe, se, fatigue]]
+    $best_in_history = [perm_set, [be, pe, se, de, fatigue]]
   end
 
-  return [be, pe, se, fatigue]
+  return [be, pe, se, de, fatigue]
 end
 
 def optimize(initial_layout, jamo_data, scheme)
@@ -314,10 +315,10 @@ def optimize(initial_layout, jamo_data, scheme)
   end
 
   analysis = Analysis.new(jamo_data, @standard_keyboard, new_layout)
-  be, pe, se = analysis.efforts
-  fatigue = (be + pe + se) * analysis.count_strokes / @total_jamo
+  be, pe, se, de = analysis.efforts
+  fatigue = (be + pe + se) * analysis.count_strokes / @total_jamo + de
 
   puts "최종 배열의 피로도: %.4f" % fatigue
-  puts "각 피로도 항목: %.4f/%.4f/%.4f" % [be, pe, se, fatigue]
+  puts "각 피로도 항목: %.4f/%.4f/%.4f/%.4f/%.4f" % [be, pe, se, de, fatigue]
   print_keyboard(@standard_keyboard, new_layout)
 end

@@ -27,8 +27,8 @@ require_relative './optimize.rb'
 
 def optimize_crs(initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
   perm_set = layout_to_perm_set(initial_layout, initial_layout, cho_opt, jung_opt, jong_opt)
-  be, pe, se, fatigue = func(perm_set, initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
-  puts "최초 배열의 피로도: %.4f/%.4f/%.4f/%.4f" % [be, pe, se, fatigue]
+  be, pe, se, de, fatigue = func(perm_set, initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
+  puts "최초 배열의 피로도: %.4f/%.4f/%.4f/%.4f/%.4f" % [be, pe, se, de, fatigue]
 
   set_size = 10 + 7 * (cho_opt.length + jung_opt.length + jong_opt.length)
 
@@ -37,7 +37,7 @@ def optimize_crs(initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
 
   layout_cp = initial_layout.deep_copy
   initial_perm_set = layout_to_perm_set(layout_cp, layout_cp, cho_opt, jung_opt, jong_opt)
-  data_set.add_data(initial_perm_set, [be, pe, se, fatigue])
+  data_set.add_data(initial_perm_set, [be, pe, se, de, fatigue])
 
   while data_set.length < set_size
     random_perm_set = Marshal.load(Marshal.dump(perm_set)).each { |perm| perm.shuffle! }
@@ -83,10 +83,11 @@ def optimize_crs(initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
 
     if (i % 10 == 0) && (i > 0)
       best = data_set.best
-      puts "#{i}th cycle: #{best.perm_set}/%.4f/%.4f/%.4f/%.4f, 경과 시간: %d초" % [best.vals[0],
+      puts "#{i}th cycle: #{best.perm_set}/%.4f/%.4f/%.4f/%.4f/%.4f, 경과 시간: %d초" % [best.vals[0],
                                                                                     best.vals[1],
                                                                                     best.vals[2], 
-                                                                                    best.vals[3], 
+                                                                                    best.vals[3],
+                                                                                    best.vals[4],
                                                                                     (Time.now - t1).to_i]
     end
 

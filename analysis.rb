@@ -445,7 +445,38 @@ class Analysis
     return effort / (@symbols_arr.length - 2)
   end
 
+  def grouped_finger_distribution_ratio
+    dist = finger_distribution_ratio
+
+    return [
+      dist[0] + dist[7], # pinky
+      dist[1] + dist[6], # ring
+      dist[2] + dist[5], # middle
+      dist[3] + dist[4]  # index
+    ]
+  end
+
+  def distribution_effort
+    dist = grouped_finger_distribution_ratio
+    maxi = [$max_finger_distribution[3], $max_finger_distribution[2], $max_finger_distribution[1], $max_finger_distribution[0]]
+    mini = [$min_finger_distribution[3], $min_finger_distribution[2], $min_finger_distribution[1], $min_finger_distribution[0]]
+
+    effort = 0.0
+    (0...dist.length).each do |i|
+      overuse = dist[i] - maxi[i]
+      underuse = mini[i] - dist[i]
+
+      next if overuse <= 0 && underuse <= 0
+
+      x = [overuse, underuse].max * 100.0
+      effort += x + (x ** $distribution_exponent) / 5.0
+    end
+
+    return $distribution_weight * effort / 100.0
+  end
+
+
   def efforts
-    return [base_effort, penalty_effort, stroke_effort]
+    return [base_effort, penalty_effort, stroke_effort, distribution_effort]
   end
 end

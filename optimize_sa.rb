@@ -26,8 +26,8 @@ require_relative './optimize.rb'
 
 def optimize_sa(initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
   perm_set = layout_to_perm_set(initial_layout, initial_layout, cho_opt, jung_opt, jong_opt)
-  min_be, min_pe, min_se, min_fatigue = func(perm_set, initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
-  puts "최초 배열의 피로도: %.4f/%.4f/%.4f/%.4f" % [min_be, min_pe, min_se, min_fatigue]
+  min_be, min_pe, min_se, min_de, min_fatigue = func(perm_set, initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
+  puts "최초 배열의 피로도: %.4f/%.4f/%.4f/%.4f/%.4f" % [min_be, min_pe, min_se, min_de, min_fatigue]
 
   min_perm_set = Marshal.load(Marshal.dump(perm_set))
 
@@ -41,7 +41,7 @@ def optimize_sa(initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
     new_perm_set = random_mutate(new_perm_set, cho_opt, jung_opt, jong_opt) if (t > $t_0 / 2) || (rand < 0.5)
     new_perm_set = random_mutate(new_perm_set, cho_opt, jung_opt, jong_opt) if rand < 0.25
 
-    be, pe, se, fatigue = func(new_perm_set, initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
+    be, pe, se, de, fatigue = func(new_perm_set, initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
 
     df = fatigue - min_fatigue
 
@@ -50,12 +50,13 @@ def optimize_sa(initial_layout, cho_opt, jung_opt, jong_opt, jamo_data)
     if rand < p
       min_perm_set = new_perm_set
       min_fatigue = fatigue
-      min_be, min_pe, min_se = be, pe, se
+      min_be, min_pe, min_se, min_de = be, pe, se, de
     end
 
-    puts "#{i}th cycle: #{min_perm_set}/%.4f/%.4f/%.4f/%.4f, 경과 시간: %d초" % [min_be, 
+    puts "#{i}th cycle: #{min_perm_set}/%.4f/%.4f/%.4f/%.4f/%.4f, 경과 시간: %d초" % [min_be, 
                                                                                  min_pe,
                                                                                  min_se, 
+                                                                                 min_de,
                                                                                  min_fatigue, 
                                                                                  (Time.now - t1).to_i] if (i % 100 == 0) && (i > 0)
   end

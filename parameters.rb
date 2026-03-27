@@ -23,8 +23,18 @@ $center_dy = 9.0 / 1.905
 
 # finger dependent values
 $stretch_max    = [1.0, 1.7, 1.9, 1.5, 1.5, 1.9, 1.7, 1.0]
-$finger_burdens = [3.26, 2.39, 1.53, 1.0, 1.0, 1.53, 2.39, 3.26]
+# $finger_burdens = [3.26, 2.39, 1.53, 1.0, 1.0, 1.53, 2.39, 3.26]
+$finger_burdens = [5.25, 2.2105, 1.3548, 1.0, 1.0, 1.3548, 2.2105, 5.25]
 $finger_repeat_weight = [0.0, 0.0, 1.0, 1.05, 1.15, 1.25]
+
+# parameters for distribution effort
+$max_finger_distribution = [0.55, 0.33, 0.22, 0.1]
+# $ideal_finger_distribution = [0.42, 0.31, 0.19, 0.08]
+$min_finger_distribution = [0.38, 0.2, 0.15, 0.05]
+$distribution_weight = 3.0
+
+# exponent for concentration penalty
+$distribution_exponent = 2.0
 
 # penalty weight parameters
 $radial_weight  = 0.23
@@ -57,11 +67,11 @@ $jong_opt = []
 
 # # dubeol
 # $cho_opt  = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 
-#              'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ]
-# $cho_opt  = ['ㄱ', 'ㄴ', 'ㄷ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 
-#              'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ]
+            #  'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ]
+# $cho_opt  = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 
+            # 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ]
 # $jung_opt = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ',
-#              'ㅡ', 'ㅣ']
+            # 'ㅡ', 'ㅣ']
 # sebeol
 #$cho_opt  = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 
              #'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ' ]

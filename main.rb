@@ -83,7 +83,7 @@ puts "총 자모 수: #{@total_jamo}"
 #jamo_frequency(jamo_data)
 
 def print_entries(analysis) 
-  be, pe, se = analysis.efforts
+  be, pe, se, de = analysis.efforts
 
   return [
     ["이름", analysis.layout.name],
@@ -103,7 +103,8 @@ def print_entries(analysis)
     ["평균 피로(손 이동)", str(be)],
     ["평균 피로(글쇠)", str(pe)],
     ["평균 피로(손 꼬임)", str(se)],
-    ["총 피로(자모에 대한 평균)", str((be + pe + se) * analysis.count_strokes / @total_jamo)],
+    ["손가락 분산 패널티", str(de)],
+    ["총 피로(자모에 대한 평균)", str((be + pe + se) * analysis.count_strokes / @total_jamo + de)],
   ]
 end
 
