@@ -20,8 +20,10 @@ with Typing fatigue analyzer; if not, see <http://www.gnu.org/licenses/>.
 require_relative './parse.rb'
 require_relative './key.rb'
 require_relative './keyboard.rb'
+# require_relative './keyboard_b_to_righthand.rb'
+# require_relative './keyboard_semoe.rb'
 # 세모이 자판은 운지법이 다른 자판과 다르기 때문에
-# 원래의 keyboard.rb 파일 대신에 keyboard_semoe2018.rb를 잠시 keyboard.rb로 바꾸시고 분석하셔야 합니다.
+# 원래의 keyboard.rb 파일 대신에 keyboard_semoe.rb를 사용하여 분석하셔야 합니다.
 require_relative './keyboard_layout.rb'
 require_relative './analysis.rb'
 require_relative './jamo_analysis.rb'
