@@ -445,21 +445,18 @@ class Analysis
     return effort / (@symbols_arr.length - 2)
   end
 
-  def grouped_finger_distribution_ratio
-    dist = finger_distribution_ratio
-
-    return [
-      dist[0] + dist[7], # pinky
-      dist[1] + dist[6], # ring
-      dist[2] + dist[5], # middle
-      dist[3] + dist[4]  # index
-    ]
-  end
-
   def distribution_effort
-    dist = grouped_finger_distribution_ratio
-    maxi = [$max_finger_distribution[3], $max_finger_distribution[2], $max_finger_distribution[1], $max_finger_distribution[0]]
-    mini = [$min_finger_distribution[3], $min_finger_distribution[2], $min_finger_distribution[1], $min_finger_distribution[0]]
+    dist = finger_distribution_ratio
+    
+    maxi = [$max_finger_distribution[3]/2.0, $max_finger_distribution[2]/2.0, 
+    $max_finger_distribution[1]/2.0, $max_finger_distribution[0]/2.0, 
+    $max_finger_distribution[0]/2.0, $max_finger_distribution[1]/2.0, 
+    $max_finger_distribution[2]/2.0, $max_finger_distribution[3]/2.0]
+
+    mini = [$min_finger_distribution[3]/2.0, $min_finger_distribution[2]/2.0, 
+    $min_finger_distribution[1]/2.0, $min_finger_distribution[0]/2.0, 
+    $min_finger_distribution[0]/2.0, $min_finger_distribution[1]/2.0, 
+    $min_finger_distribution[2]/2.0, $min_finger_distribution[3]/2.0]
 
     effort = 0.0
     (0...dist.length).each do |i|
