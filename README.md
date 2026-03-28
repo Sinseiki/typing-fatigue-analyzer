@@ -24,7 +24,7 @@
 
 * 텍스트에 있는 한글이 아닌 모든 문자는 무시합니다. 즉, 숫자, 특수문자, 공백 등을 모두 무시한다는 뜻입니다.
 * 피로도의 절대량은 의미가 없고, 상대적인 차이만 유의미합니다. 즉, 자판 A, B, C의 피로도가 2, 1.5, 1일 때, 자판 C가 A의 절반만 피로하다고 말할 수는 없습니다. 다만, B가 A보다 덜 피로한 만큼 C가 B보다 덜 피로하다고는 말할 수 있습니다.
-  <br> (다만, [#001](https://github.com/Sinseiki/typing-fatigue-analyzer/issues/1) 수정을 통해 모델 내부 기준이라는 점을 전제로 할 때, 대략적인 수치 비교는 가능해진 것으로 보입니다. - 신세기)
+  <br> (다만, [#001](https://github.com/Sinseiki/typing-fatigue-analyzer/issues/1), [#002](https://github.com/Sinseiki/typing-fatigue-analyzer/issues/2) 수정을 통해 모델 내부 기준이라는 점을 전제로 할 때, 대략적인 수치 비교는 가능해진 것으로 보입니다. - 신세기)
 
 # 라이센스
 
