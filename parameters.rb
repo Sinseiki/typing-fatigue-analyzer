@@ -30,7 +30,7 @@ $finger_repeat_weight = [0.0, 0.0, 1.0, 1.05, 1.15, 1.25]
 # parameters for distribution effort
 $max_finger_distribution = [0.56, 0.36, 0.24, 0.12]
 # $ideal_finger_distribution = [0.42, 0.31, 0.19, 0.08]
-$min_finger_distribution = [0.36, 0.17, 0.11, 0.045]
+$min_finger_distribution = [0.35, 0.17, 0.11, 0.045]
 $distribution_weight = 3.0
 
 # exponent for concentration penalty
