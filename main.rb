@@ -76,7 +76,7 @@ layouts = total_layouts
 
 
 # 원하는 파일의 경로를 선택하세요.
-file = "texts/novels.txt"
+file = "texts/sample.txt"
 
 str = File.open(file, "r:UTF-8", &:read)
 
