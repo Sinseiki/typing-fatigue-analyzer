@@ -20,7 +20,14 @@ with Typing fatigue analyzer; if not, see <http://www.gnu.org/licenses/>.
 require_relative './parse.rb'
 require_relative './parameters.rb'
 require_relative './key.rb'
+# 일반 세벌식 자판용
 require_relative './keyboard.rb'
+# b가 오른손에 있는 자판용
+# require_relative './keyboard_b_to_righthand.rb'
+# 참신세벌식 자판용
+# require_relative './keyboard_chamshin.rb'
+# 세모이 자판용
+# require_relative './keyboard_semoe.rb'
 require_relative './keyboard_layout.rb'
 require 'rubygems'
 
@@ -447,7 +454,7 @@ class Analysis
 
   def distribution_effort
     dist = finger_distribution_ratio
-    
+
     maxi = [$max_finger_distribution[3]/2.0, $max_finger_distribution[2]/2.0, 
     $max_finger_distribution[1]/2.0, $max_finger_distribution[0]/2.0, 
     $max_finger_distribution[0]/2.0, $max_finger_distribution[1]/2.0, 

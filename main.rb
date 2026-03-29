@@ -20,10 +20,6 @@ with Typing fatigue analyzer; if not, see <http://www.gnu.org/licenses/>.
 require_relative './parse.rb'
 require_relative './key.rb'
 require_relative './keyboard.rb'
-# require_relative './keyboard_b_to_righthand.rb'
-# require_relative './keyboard_semoe.rb'
-# 세모이 자판은 운지법이 다른 자판과 다르기 때문에
-# 원래의 keyboard.rb 파일 대신에 keyboard_semoe.rb를 사용하여 분석하셔야 합니다.
 require_relative './keyboard_layout.rb'
 require_relative './analysis.rb'
 require_relative './jamo_analysis.rb'
@@ -40,7 +36,6 @@ def percentage_str(val)
 end
 
 total_layouts = [
-  @dubeol, 
   @sebeol_3_14,
   @sebeol_3_90,
   @sebeol_3_91,
@@ -52,18 +47,32 @@ total_layouts = [
   @sebeol_kim_38,
   @sebeol_sae_sunarae,
   @sebeol_sunarae,
-  @shin_p2,
+  @shinsebeol_p2,
   @shinsebeol_park_2003,
+  @dubeol_gyeob_e,
+  @dubeol_jul_e,
+]
+
+b_to_right_layout = [
+  @dubeol, 
+  @dubeol_parksong,
 ]
 
 semoe_layout = [
-  @sebeol_3_m2018,
+  @sebeol_semo_e,
+]
+
+chamshin_layout = [
+  @chamshin,
+  @chamshin_d,
 ]
 
 
 layouts = total_layouts
+# layouts = b_to_right_layout
 # layouts = semoe_layout
-# 세모이 자판은 운지법이 다른 자판과 다르기 때문에 따로 분석해야 합니다.
+# layouts = chamshin_layout
+# b 자판을 오른손으로 치는 자판, 세모이 자판, 참신세벌식은 운지법이 다른 자판과 다르기 때문에 analysis.rb에서 keyboard 파일을 변경하신 후 따로 분석하셔야 합니다.
 
 
 # 원하는 파일의 경로를 선택하세요.

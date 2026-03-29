@@ -31,11 +31,11 @@ jungseong = {
   'ㅓ' => 'r',
   'ㅔ' => 'c',
   'ㅕ' => 't',
-  'ㅖ' => 'vc',
+  'ㅖ' => '.c',
   'ㅗ' => 'v',
   'ㅘ' => '.f',
   'ㅙ' => '.fd',
-  'ㅚ' => 'vd',
+  'ㅚ' => '.d',
   'ㅛ' => 'f/',
   # /는 keyboard_semoe2018.rb에서 r을 중지로 눌렀을 때로 설정되어 있습니다.
   'ㅜ' => 'b',
@@ -86,4 +86,4 @@ end
 
 updater.call(choseong, jungseong, jongseong)
 
-@sebeol_3_m2018 = KeyboardLayout.new('세벌식 모아치기 e-2018', choseong, jungseong, jongseong, updater)
+@sebeol_semo_e = KeyboardLayout.new('세벌식 모아치기 e', choseong, jungseong, jongseong, updater)

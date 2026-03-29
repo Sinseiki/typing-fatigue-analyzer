@@ -25,84 +25,81 @@ choseong = {
   'ㄷ' => 'u',
   'ㄹ' => 'y',
   'ㅁ' => 'i',
-  'ㅂ' => 'o',
+  'ㅂ' => ';',
   'ㅅ' => 'n',
   'ㅇ' => 'j',
   'ㅈ' => 'l',
+  'ㅊ' => 'o',
+  'ㅋ' => '/',
+  'ㅌ' => "'",
+  'ㅍ' => 'p',
   'ㅎ' => 'm'
 }
 
 jungseong = {
   'ㅏ' => 'f',
-  'ㅑ' => '5',
+  'ㅐ' => 'e',
+  'ㅑ' => 'w',
+  'ㅒ' => 'q',
   'ㅓ' => 'r',
+  'ㅔ' => 'c',
   'ㅕ' => 't',
-  'ㅔ' => 'b',
+  'ㅖ' => 's',
   'ㅗ' => 'v',
-  'ㅛ' => '4',
-  'ㅜ' => 'c',
+  'ㅛ' => 'x',
+  'ㅜ' => 'b',
+  'ㅠ' => 'a',
   'ㅡ' => 'g',
+  'ㅢ' => 'id',
   'ㅣ' => 'd',
-  '*ㅗ' => "'",
-  '*ㅜ' => 'p',
+  '*ㅗ' => '/',
+  '*ㅜ' => 'o'
 }
 
 jongseong = {
-  'ㄱ' => 'x',
+  'ㄱ' => 'c',
   'ㄴ' => 's',
-  'ㄷ' => '2',
-  'ㄹ' => 'e',
+  'ㄷ' => 'g',
+  'ㄹ' => 'w',
   'ㅁ' => 'z',
-  'ㅂ' => '3',
-  'ㅅ' => 'w',
-  'ㅆ' => ';',
+  'ㅂ' => 'e',
+  'ㅅ' => 'q',
+  'ㅆ' => 'x',
   'ㅇ' => 'a',
-  'ㅈ' => ";e",
-  'ㅎ' => "q",
-  'ㄶ' => ';s',
-  'ㄽ' => ';1',
-  '*s' => ";",
+  'ㅈ' => 'v',
+  'ㅊ' => 'b',
+  'ㅋ' => 't',
+  'ㅌ' => 'r',
+  'ㅍ' => 'f',
+  'ㅎ' => 'd'
 }
 
 
 updater = Proc.new do |cho, jung, jong|
-  combine(cho, 'ㄲ', 'ㄱ', 'ㅇ')
-  combine(cho, 'ㄸ', 'ㄷ', 'ㅇ')
-  combine(cho, 'ㅃ', 'ㅂ', 'ㅇ')
-  combine(cho, 'ㅆ', 'ㅅ', 'ㅇ')
-  combine(cho, 'ㅉ', 'ㅈ', 'ㅇ')
-  combine(cho, 'ㅊ', 'ㅅ', 'ㅎ')
-  combine(cho, 'ㅋ', 'ㄱ', 'ㅎ')
-  combine(cho, 'ㅌ', 'ㄷ', 'ㅎ')
-  combine(cho, 'ㅍ', 'ㅂ', 'ㅎ')
-  combine(jung, 'ㅐ', 'ㅏ', 'ㅣ')
-  combine(jung, 'ㅒ', 'ㅓ', 'ㅕ')
-  combine(jung, 'ㅖ', 'ㅣ', 'ㅔ')
-  combine(jung, 'ㅛ', 'ㅣ', 'ㅗ')
-  combine(jung, 'ㅠ', 'ㅏ', 'ㅜ')
+  digraph(cho, 'ㄲ', 'ㄱ')
+  digraph(cho, 'ㄸ', 'ㄷ')
+  digraph(cho, 'ㅃ', 'ㅂ')
+  digraph(cho, 'ㅆ', 'ㅅ')
+  digraph(cho, 'ㅉ', 'ㅈ')
   combine(jung, 'ㅘ', '*ㅗ', 'ㅏ')
   combine(jung, 'ㅙ', '*ㅗ', 'ㅐ')
   combine(jung, 'ㅚ', '*ㅗ', 'ㅣ')
   combine(jung, 'ㅝ', '*ㅜ', 'ㅓ')
   combine(jung, 'ㅞ', '*ㅜ', 'ㅔ')
   combine(jung, 'ㅟ', '*ㅜ', 'ㅣ')
-  combine(jung, 'ㅢ', 'ㅡ', 'ㅣ')
-  combine(jong, 'ㄲ', 'ㄱ', 'ㅇ')
-  combine(jong, 'ㅊ', '*s', 'ㅅ')
-  combine(jong, 'ㅋ', '*s', 'ㄱ')
-  combine(jong, 'ㅌ', '*s', 'ㄷ')
-  combine(jong, 'ㅍ', '*s', 'ㅂ')
+  digraph(jong, 'ㄲ', 'ㄱ')
   combine(jong, 'ㄳ', 'ㄱ', 'ㅅ')
-  combine(jong, 'ㄵ', 'ㄴ', 'ㄹ')
+  combine(jong, 'ㄵ', 'ㄴ', 'ㅈ')
+  combine(jong, 'ㄶ', 'ㄴ', 'ㅎ')
   combine(jong, 'ㄺ', 'ㄹ', 'ㄱ')
   combine(jong, 'ㄻ', 'ㄹ', 'ㅁ')
-  combine(jong, 'ㄼ', 'ㄹ', 'ㅇ')
-  combine(jong, 'ㄾ', 'ㄹ', 'ㄷ')
-  combine(jong, 'ㄿ', 'ㄹ', 'ㅂ')
-  combine(jong, 'ㅀ', '*s', 'ㅎ')
+  combine(jong, 'ㄼ', 'ㄹ', 'ㅂ')
+  combine(jong, 'ㄽ', 'ㄹ', 'ㅅ')
+  combine(jong, 'ㄾ', 'ㄹ', 'ㅌ')
+  combine(jong, 'ㄿ', 'ㄹ', 'ㅍ')
+  combine(jong, 'ㅀ', 'ㄹ', 'ㅎ')
   combine(jong, 'ㅄ', 'ㅂ', 'ㅅ')
 end
-
 updater.call(choseong, jungseong, jongseong)
 
-@moachigi_2014 = KeyboardLayout.new('모아치기 2014', choseong, jungseong, jongseong, updater)
+@shinsebeol_p2 = KeyboardLayout.new('신세벌식 P2', choseong, jungseong, jongseong, updater)

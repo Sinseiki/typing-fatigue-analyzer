@@ -20,74 +20,60 @@ with Typing fatigue analyzer; if not, see <http://www.gnu.org/licenses/>.
 require_relative '../keyboard_layout.rb'
 
 choseong = {
-  'ㄱ' => 'k',
-  'ㄴ' => 'h',
-  'ㄷ' => 'u',
-  'ㄹ' => 'y',
-  'ㅁ' => 'i',
-  'ㅂ' => ';',
-  'ㅅ' => 'n',
-  'ㅇ' => 'j',
-  'ㅈ' => 'l',
-  'ㅊ' => 'o',
-  'ㅋ' => '/',
-  'ㅌ' => "'",
-  'ㅍ' => 'p',
-  'ㅎ' => 'm'
+  'ㄱ' => 'f',
+  'ㄴ' => 's',
+  'ㄷ' => 'e',
+  'ㄹ' => 'g',
+  'ㅁ' => 'a',
+  'ㅂ' => 'q',
+  'ㅅ' => 't',
+  'ㅆ' => 'v',
+  'ㅇ' => 'd',
+  'ㅈ' => 'w',
+  'ㅊ' => 'c',
+  'ㅋ' => 'z',
+  'ㅌ' => 'x',
+  'ㅍ' => 'b',
+  'ㅎ' => 'r'
 }
 
 jungseong = {
-  'ㅏ' => 'f',
-  'ㅐ' => 'e',
-  'ㅑ' => 'w',
-  'ㅒ' => 'q',
-  'ㅓ' => 'r',
-  'ㅔ' => 'c',
-  'ㅕ' => 't',
-  'ㅖ' => 's',
-  'ㅗ' => 'v',
-  'ㅛ' => 'x',
-  'ㅜ' => 'b',
-  'ㅠ' => 'a',
-  'ㅡ' => 'g',
-  'ㅢ' => 'id',
-  'ㅣ' => 'd',
-  '*ㅗ' => '/',
-  '*ㅜ' => 'o'
+  'ㅏ' => 'k',
+  'ㅐ' => 'n',
+  'ㅑ' => 'o',
+  'ㅓ' => 'u',
+  'ㅔ' => 'm',
+  'ㅕ' => 'i',
+  'ㅗ' => 'h',
+  'ㅛ' => 'y',
+  'ㅜ' => ';',
+  'ㅠ' => 'p',
+  'ㅡ' => 'j',
+  # 'ㅢ' => 'y',
+  'ㅣ' => 'l'
 }
 
-jongseong = {
-  'ㄱ' => 'c',
-  'ㄴ' => 's',
-  'ㄷ' => 'g',
-  'ㄹ' => 'w',
-  'ㅁ' => 'z',
-  'ㅂ' => 'e',
-  'ㅅ' => 'q',
-  'ㅆ' => 'x',
-  'ㅇ' => 'a',
-  'ㅈ' => 'v',
-  'ㅊ' => 'b',
-  'ㅋ' => 't',
-  'ㅌ' => 'r',
-  'ㅍ' => 'f',
-  'ㅎ' => 'd'
-}
-
+jongseong = {} 
 
 updater = Proc.new do |cho, jung, jong|
-  digraph(cho, 'ㄲ', 'ㄱ')
-  digraph(cho, 'ㄸ', 'ㄷ')
-  digraph(cho, 'ㅃ', 'ㅂ')
-  digraph(cho, 'ㅆ', 'ㅅ')
-  digraph(cho, 'ㅉ', 'ㅈ')
-  combine(jung, 'ㅘ', '*ㅗ', 'ㅏ')
-  combine(jung, 'ㅙ', '*ㅗ', 'ㅐ')
-  combine(jung, 'ㅚ', '*ㅗ', 'ㅣ')
-  combine(jung, 'ㅝ', '*ㅜ', 'ㅓ')
-  combine(jung, 'ㅞ', '*ㅜ', 'ㅔ')
-  combine(jung, 'ㅟ', '*ㅜ', 'ㅣ')
-  digraph(jong, 'ㄲ', 'ㄱ')
+  cho.each { |key, val| jong[key] = val unless val.include?("N") }
+  shift(cho, 'ㄲ', 'ㄱ')
+  shift(cho, 'ㄸ', 'ㄷ')
+  shift(cho, 'ㅃ', 'ㅂ')
+  shift(cho, 'ㅉ', 'ㅈ')
+  # shift(cho, 'ㅋ', 'ㅎ')
+  shift(jung, 'ㅒ', 'ㅐ')
+  shift(jung, 'ㅖ', 'ㅔ')
+  # shift(jung, 'ㅠ', 'ㅜ')
+  combine(jung, 'ㅘ', 'ㅗ', 'ㅏ')
+  combine(jung, 'ㅙ', 'ㅗ', 'ㅐ')
+  combine(jung, 'ㅚ', 'ㅗ', 'ㅣ')
+  combine(jung, 'ㅟ', 'ㅜ', 'ㅣ')
+  combine(jung, 'ㅝ', 'ㅜ', 'ㅓ')
+  combine(jung, 'ㅞ', 'ㅜ', 'ㅔ')
+  combine(jung, 'ㅢ', 'ㅡ', 'ㅣ')
+  shift(jong, 'ㄲ', 'ㄱ')
+  # shift(jong, 'ㅋ', 'ㅎ')
   combine(jong, 'ㄳ', 'ㄱ', 'ㅅ')
   combine(jong, 'ㄵ', 'ㄴ', 'ㅈ')
   combine(jong, 'ㄶ', 'ㄴ', 'ㅎ')
@@ -100,6 +86,7 @@ updater = Proc.new do |cho, jung, jong|
   combine(jong, 'ㅀ', 'ㄹ', 'ㅎ')
   combine(jong, 'ㅄ', 'ㅂ', 'ㅅ')
 end
+
 updater.call(choseong, jungseong, jongseong)
 
-@shin_p2 = KeyboardLayout.new('신세벌식 P2', choseong, jungseong, jongseong, updater)
+@dubeol_jul_e = KeyboardLayout.new('두벌식 줄맞춤 e', choseong, jungseong, jongseong, updater)
