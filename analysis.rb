@@ -22,7 +22,7 @@ require_relative './parameters.rb'
 require_relative './key.rb'
 # 일반 세벌식 자판용
 require_relative './keyboard.rb'
-# b가 오른손에 있는 자판용
+# b를 오른손으로 치는 자판용
 # require_relative './keyboard_b_to_righthand.rb'
 # 참신세벌식 자판용
 # require_relative './keyboard_chamshin.rb'
@@ -479,8 +479,121 @@ class Analysis
     return $distribution_weight * effort / 100.0
   end
 
+  # finger.number
+  # 5: index, 4: middle, 3: ring, 2: pinky
+
+  def finger_length_rank(finger)
+    case finger.number
+    when 4 then 3   # middle
+    when 5 then 2   # index
+    when 3 then 2   # ring
+    when 2 then 1   # pinky
+    else 0
+    end
+  end
+
+  def preferred_row_rank(finger)
+    # larger value = prefers higher row more
+    # middle highest, ring next, pinky next, index lowest
+    case finger.number
+    when 4 then 4   # middle
+    when 3 then 3   # ring
+    when 2 then 2   # pinky
+    when 5 then 1   # index
+    else 0
+    end
+  end
+
+  def same_hand?(key1, key2)
+    key1.hand == key2.hand
+  end
+
+  def scissor_candidate_pair_weight(key1, key2)
+    return nil unless same_hand?(key1, key2)
+
+    pair = [key1.finger.number, key2.finger.number].sort.reverse
+    $scissor_pair_weight[pair]
+  end
+
+  def scissor_row_distance(key1, key2)
+    (key1.row - key2.row).abs
+  end
+
+  def scissor_row_weight(key1, key2)
+    dist = scissor_row_distance(key1, key2)
+    case dist
+      when 1 then 1.0
+      when 2 then 2.0
+      when 3 then 3.0
+      else 3.0 + (dist - 3) * 0.5
+    end
+  end
+
+  def nonadjacent_scissor_pair?(key1, key2)
+    (key1.finger.number - key2.finger.number).abs >= 2
+  end
+
+  def scissor_motion?(key1, key2)
+    return false unless same_hand?(key1, key2)
+
+    pair_weight = scissor_candidate_pair_weight(key1, key2)
+    return false if pair_weight.nil?
+
+    row_dist = scissor_row_distance(key1, key2)
+    return false if row_dist == 0
+
+    len1 = finger_length_rank(key1.finger)
+    len2 = finger_length_rank(key2.finger)
+
+    # row number: smaller = higher row, larger = lower row
+    # scissor if the longer finger is lower than the shorter one
+    length_scissor =
+      (len1 > len2 && key1.row > key2.row) ||
+      (len2 > len1 && key2.row > key1.row)
+
+    # same length class fallback: preferred row ordering
+    pref1 = preferred_row_rank(key1.finger)
+    pref2 = preferred_row_rank(key2.finger)
+
+    # finger with higher preferred row rank should not be lower
+    preference_scissor =
+      (pref1 > pref2 && key1.row > key2.row) ||
+      (pref2 > pref1 && key2.row > key1.row)
+
+    return length_scissor || preference_scissor
+  end
+
+  def digraph_scissor_effort(key1, key2)
+    pair_weight = scissor_candidate_pair_weight(key1, key2)
+    return 0.0 if pair_weight.nil?
+
+    return 0.0 unless scissor_motion?(key1, key2)
+
+    row_weight = scissor_row_weight(key1, key2)
+    return 0.0 if row_weight.nil?
+
+    effort = pair_weight * row_weight
+
+    if nonadjacent_scissor_pair?(key1, key2)
+      effort *= $scissor_nonadjacent_factor
+    end
+
+    effort
+  end
+
+  def scissor_effort
+    effort = 0.0
+
+    (1...@symbols_arr.length).each do |i|
+      key1 = key(@symbols_arr[i - 1])
+      key2 = key(@symbols_arr[i])
+      effort += digraph_scissor_effort(key1, key2)
+    end
+
+    return $scissor_weight * effort / (@symbols_arr.length - 1)
+  end
 
   def efforts
-    return [base_effort, penalty_effort, stroke_effort, distribution_effort]
+    return [base_effort, penalty_effort, stroke_effort, scissor_effort, distribution_effort]
   end
 end

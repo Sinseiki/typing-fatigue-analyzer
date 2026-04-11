@@ -49,13 +49,13 @@ total_layouts = [
   @sebeol_sunarae,
   @shinsebeol_p2,
   @shinsebeol_park_2003,
-  @dubeol_gyeob_e,
   @dubeol_jul_e,
 ]
 
 b_to_right_layout = [
   @dubeol, 
   @dubeol_parksong,
+  @dubeol_gyeob_e,
 ]
 
 semoe_layout = [
@@ -72,7 +72,7 @@ layouts = total_layouts
 # layouts = b_to_right_layout
 # layouts = semoe_layout
 # layouts = chamshin_layout
-# b 자판을 오른손으로 치는 자판, 세모이 자판, 참신세벌식은 운지법이 다른 자판과 다르기 때문에 analysis.rb에서 keyboard 파일을 변경하신 후 따로 분석하셔야 합니다.
+# b 글쇠를 오른손으로 치는 자판, 세모이 자판, 참신세벌식은 운지법이 다른 자판과 다르기 때문에 analysis.rb에서 keyboard 파일을 변경하신 후 따로 분석하셔야 합니다.
 
 
 # 원하는 파일의 경로를 선택하세요.
@@ -92,7 +92,7 @@ puts "총 자모 수: #{@total_jamo}"
 #jamo_frequency(jamo_data)
 
 def print_entries(analysis) 
-  be, pe, se, de = analysis.efforts
+  be, pe, se, ce, de = analysis.efforts
 
   return [
     ["이름", analysis.layout.name],
@@ -112,8 +112,9 @@ def print_entries(analysis)
     ["평균 피로(손 이동)", str(be)],
     ["평균 피로(글쇠)", str(pe)],
     ["평균 피로(손 꼬임)", str(se)],
+    ["평균 피로(가위질 패턴)", str(ce)],
     ["손가락 분산 패널티", str(de)],
-    ["총 피로(자모에 대한 평균)", str((be + pe + se) * analysis.count_strokes / @total_jamo + de)],
+    ["총 피로(자모에 대한 평균)", str((be + pe + se + ce) * analysis.count_strokes / @total_jamo + de)],
   ]
 end
 

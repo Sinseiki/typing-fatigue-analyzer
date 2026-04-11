@@ -36,6 +36,23 @@ $distribution_weight = 3.0
 # exponent for concentration penalty
 $distribution_exponent = 2.0
 
+# parameters for scissor effort
+$scissor_weight = 1.67
+
+# finger pair weights
+# stronger penalty for less independent pairs
+$scissor_pair_weight = {
+  [5, 4] => 1.00,  # index-middle
+  [4, 3] => 1.20,  # middle-ring
+  [3, 2] => 1.40,  # ring-pinky
+  [5, 3] => 0.85,  # index-ring
+  [4, 2] => 1.00,  # middle-pinky
+  [5, 2] => 0.70   # index-pinky
+}
+
+# non-adjacent pair attenuation
+$scissor_nonadjacent_factor = 0.85
+
 # penalty weight parameters
 $radial_weight  = 0.23
 $curling_weight = 1.55
