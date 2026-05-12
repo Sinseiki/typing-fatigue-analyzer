@@ -68,7 +68,7 @@ $finger_weight  = 0.375
 $inversion_penalty = 2.15
 
 # parameters for penalty effort
-$shift_penalty = 5.0
+$shift_penalty = 0.5
 
 # parameters for stroke effort
 $radial_threshold = 0.72

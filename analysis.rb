@@ -36,11 +36,71 @@ class Analysis
     @keyboard    = keyboard
     @layout      = layout
     t1 = Time.now
-    @symbols     = jamo_data.inject('') { |sum, jamos| sum << layout.convert(jamos) }.gsub('FN', '')
-    @symbols_arr = @symbols.gsub('N', '').gsub('F', '').split('')
+    @symbols = jamo_data.inject('') { |sum, jamos| sum << layout.convert(jamos) }
+    @symbols_arr = expand_shift_symbols(@symbols)
     #puts "init: #{Time.now - t1}"
   end
   attr_accessor :keyboard, :layout, :symbols, :symbols_arr
+
+  def expand_shift_symbols(symbols)
+    chars = symbols.split('')
+    result = []
+    current_shift = nil
+    i = 0
+
+    while i < chars.length
+      char = chars[i]
+
+      if char == 'N'
+        next_symbol = chars[i + 1]
+        next_key = key(next_symbol)
+
+        raise "shift target missing: #{next_symbol.inspect}" if next_key.nil?
+
+        shift_symbol =
+          if next_key.hand == $left_hand
+            '>' # RShift
+          else
+            '<' # LShift
+          end
+
+        if current_shift != shift_symbol
+          result << shift_symbol
+          current_shift = shift_symbol
+        end
+
+      elsif char == 'F'
+        next_is_shift = chars[i + 1] == 'N'
+
+        if next_is_shift
+          next_symbol = chars[i + 2]
+          next_key = key(next_symbol)
+
+          if next_key
+            next_shift_symbol =
+              if next_key.hand == $left_hand
+                '>'
+              else
+                '<'
+              end
+
+            current_shift = nil if next_shift_symbol != current_shift
+          else
+            current_shift = nil
+          end
+        else
+          current_shift = nil
+        end
+
+      else
+        result << char
+      end
+
+      i += 1
+    end
+
+    result
+  end
 
   def key(symbol)
     return @keyboard.keys[symbol]
@@ -52,7 +112,7 @@ class Analysis
   end
 
   def count_strokes
-    return @symbols_arr.length + @symbols.count('N')
+    @symbols_arr.length
   end
 
   def count_shift

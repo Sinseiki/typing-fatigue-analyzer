@@ -204,7 +204,10 @@ keys = {
   'm'  => Key.new('m',  4, $right_hand.finger(2), [6  + row_offsets[3], row_ycoords[3] * yaxis_scale_factor], [0.0, 0.0], 0.0),
   ','  => Key.new(',',  4, $right_hand.finger(3), [7  + row_offsets[3], row_ycoords[3] * yaxis_scale_factor], [0.0, 0.0], 0.0),
   '.'  => Key.new('.',  4, $right_hand.finger(4), [8  + row_offsets[3], row_ycoords[3] * yaxis_scale_factor], [0.0, 0.0], 0.0),
-  '/'  => Key.new('/',  4, $right_hand.finger(5), [9  + row_offsets[3], row_ycoords[3] * yaxis_scale_factor], [0.0, 0.0], 0.0)
+  '/'  => Key.new('/',  4, $right_hand.finger(5), [9  + row_offsets[3], row_ycoords[3] * yaxis_scale_factor], [0.0, 0.0], 0.0),
+
+  '<'  => Key.new('<',  4,  $left_hand.finger(5), [-1.25 + row_offsets[3], row_ycoords[3] * yaxis_scale_factor], [0.0, 0.0], 0.0), # LShift
+  '>'  => Key.new('>',  4, $right_hand.finger(5), [10.25 + row_offsets[3], row_ycoords[3] * yaxis_scale_factor], [0.0, 0.0], 0.0)  # RShift
 }
 
 @standard_keyboard = Keyboard.new(keys)

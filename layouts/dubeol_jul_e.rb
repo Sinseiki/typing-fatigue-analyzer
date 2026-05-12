@@ -49,11 +49,30 @@ jungseong = {
   'ㅜ' => ';',
   'ㅠ' => 'p',
   'ㅡ' => 'j',
-  # 'ㅢ' => 'y',
   'ㅣ' => 'l'
 }
 
-jongseong = {} 
+jongseong = {
+  'ㄱ' => 'f',
+  'ㄲ' => 'l',
+  'ㄴ' => 's',
+  'ㄶ' => 'j',
+  'ㄷ' => 'e',
+  'ㄹ' => 'g',
+  'ㄺ' => 'k',
+  'ㅁ' => 'a',
+  'ㅂ' => 'q',
+  'ㅄ' => 'i',
+  'ㅅ' => 't',
+  'ㅆ' => 'v',
+  'ㅇ' => 'd',
+  'ㅈ' => 'w',
+  'ㅊ' => 'c',
+  'ㅋ' => 'z',
+  'ㅌ' => 'x',
+  'ㅍ' => 'b',
+  'ㅎ' => 'r'
+}
 
 updater = Proc.new do |cho, jung, jong|
   cho.each { |key, val| jong[key] = val unless val.include?("N") }
@@ -61,10 +80,8 @@ updater = Proc.new do |cho, jung, jong|
   shift(cho, 'ㄸ', 'ㄷ')
   shift(cho, 'ㅃ', 'ㅂ')
   shift(cho, 'ㅉ', 'ㅈ')
-  # shift(cho, 'ㅋ', 'ㅎ')
   shift(jung, 'ㅒ', 'ㅐ')
   shift(jung, 'ㅖ', 'ㅔ')
-  # shift(jung, 'ㅠ', 'ㅜ')
   combine(jung, 'ㅘ', 'ㅗ', 'ㅏ')
   combine(jung, 'ㅙ', 'ㅗ', 'ㅐ')
   combine(jung, 'ㅚ', 'ㅗ', 'ㅣ')
@@ -72,19 +89,18 @@ updater = Proc.new do |cho, jung, jong|
   combine(jung, 'ㅝ', 'ㅜ', 'ㅓ')
   combine(jung, 'ㅞ', 'ㅜ', 'ㅔ')
   combine(jung, 'ㅢ', 'ㅡ', 'ㅣ')
-  shift(jong, 'ㄲ', 'ㄱ')
-  # shift(jong, 'ㅋ', 'ㅎ')
+  # shift(jong, 'ㄲ', 'ㄱ')
   combine(jong, 'ㄳ', 'ㄱ', 'ㅅ')
   combine(jong, 'ㄵ', 'ㄴ', 'ㅈ')
-  combine(jong, 'ㄶ', 'ㄴ', 'ㅎ')
-  combine(jong, 'ㄺ', 'ㄹ', 'ㄱ')
+  # combine(jong, 'ㄶ', 'ㄴ', 'ㅎ')
+  # combine(jong, 'ㄺ', 'ㄹ', 'ㄱ')
   combine(jong, 'ㄻ', 'ㄹ', 'ㅁ')
   combine(jong, 'ㄼ', 'ㄹ', 'ㅂ')
   combine(jong, 'ㄽ', 'ㄹ', 'ㅅ')
   combine(jong, 'ㄾ', 'ㄹ', 'ㅌ')
   combine(jong, 'ㄿ', 'ㄹ', 'ㅍ')
   combine(jong, 'ㅀ', 'ㄹ', 'ㅎ')
-  combine(jong, 'ㅄ', 'ㅂ', 'ㅅ')
+  # combine(jong, 'ㅄ', 'ㅂ', 'ㅅ')
 end
 
 updater.call(choseong, jungseong, jongseong)

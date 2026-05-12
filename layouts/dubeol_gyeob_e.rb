@@ -73,7 +73,7 @@ jongseong = {
 } 
 
 updater = Proc.new do |cho, jung, jong|
-  cho.each { |key, val| jong[key] = val unless val.include?("N") }
+  # cho.each { |key, val| jong[key] = val unless val.include?("N") }
   shift(cho, 'ㄲ', 'ㄱ')
   shift(cho, 'ㄸ', 'ㄷ')
   shift(cho, 'ㅃ', 'ㅂ')
