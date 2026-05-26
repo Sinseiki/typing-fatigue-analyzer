@@ -37,3 +37,15 @@
 [model_link_4]: https://web.archive.org/web/20150309100752/http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=13
 [model_link_5]: https://web.archive.org/web/20150309100757/http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=14
 [model_link_6]: https://web.archive.org/web/20150309100802/http://sebeol.org/gnuboard/bbs/board.php?bo_table=lab&wr_id=15
+
+---
+
+# 관련 프로젝트
+
+이 분석기는 여러 한국어 자판 연구 프로젝트에서 활용되고 있습니다.
+
+| 이름 | 설명 |
+| --- | --- |
+| [세벌식 모아치기 e (세모이)](https://github.com/Sinseiki/Semo-e_keyboard) | 입력을 압축하는 준속기 자판 |
+| [두벌식 줄맞춤 e (두줄이)](https://github.com/Sinseiki/Dujul-e_keyboard) | 표준 두벌식 응용 효율 개선 자판 |
+| [두벌식 겹받침 e (두겹이)](https://github.com/Sinseiki/Dugyeob-e_keyboard) | 표준 두벌식 배열 기반 개선 자판 |
