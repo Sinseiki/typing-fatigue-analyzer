@@ -556,9 +556,9 @@ class Analysis
     # larger value = prefers higher row more
     # middle highest, ring next, pinky next, index lowest
     case finger.number
-    when 4 then 4   # middle
-    when 3 then 3   # ring
-    when 2 then 2   # pinky
+    when 4 then 2   # middle
+    when 3 then 2   # ring
+    when 2 then 1   # pinky
     when 5 then 1   # index
     else 0
     end
@@ -620,7 +620,11 @@ class Analysis
       (pref1 > pref2 && key1.row > key2.row) ||
       (pref2 > pref1 && key2.row > key1.row)
 
-    return length_scissor || preference_scissor
+    if len1 == len2
+      return preference_scissor
+    else
+      return length_scissor
+    end
   end
 
   def digraph_scissor_effort(key1, key2)

@@ -37,7 +37,7 @@ $distribution_weight = 3.0
 $distribution_exponent = 2.0
 
 # parameters for scissor effort
-$scissor_weight = 1.67
+$scissor_weight = 3.3
 
 # finger pair weights
 # stronger penalty for less independent pairs
